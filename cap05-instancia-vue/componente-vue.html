@@ -1,0 +1,54 @@
+<!-- Aula 79 - Usando Componentes -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<!-- <div id="app">
+    chamando el -->
+    <!-- template é renderizado -->
+    <!-- <comp></comp> -->
+
+    <!-- Outro forma usando classe -->
+    <!-- <div class="comp"></div> -->
+<!-- </div> -->
+
+<div id="app">
+    <!-- chamando componente -->
+    <comp></comp>
+</div>
+
+<script>
+    // registrando o componente de forma global no vue
+    Vue.component('comp', {
+        template: `
+            <!-- elemento root -->
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ modulo }}</h2>
+                <button @click="alterarAula">Alterar Aula</button>
+                <button @click="alterarModulo">Alterar Módulo</button>
+            </div>
+        `,
+        // quando se usa componentes, o data é assim data()
+        // somente na instancia vue que se usa data:
+        data() {
+            return {
+                aula: 'Aula: Montando Instância Vue',
+                modulo: 'Módulo: Instância Vue'
+            }
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '###';
+            },
+            alterarModulo() {
+                this.modulo += '###';
+            }
+        }
+    });
+
+    const vm = new Vue({
+        el: '#app',
+        // el: 'comp',
+        // el: '.comp',
+    });
+</script>

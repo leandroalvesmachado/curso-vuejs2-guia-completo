@@ -1,0 +1,35 @@
+<!-- Aula 76 - Colocando $refs e Usando nos templates -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!-- ref = uma propriedade do vue -->
+    <!-- O vue guarda essa refs no $refs -->
+    <h1 ref="aulaRef">{{ aula }}</h1>
+    <h2>{{ modulo }}</h2>
+    <button @click="alterarAula">Alterar Aula</button>
+    <button @click="alterarModulo">Alterar Módulo</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            aula: 'Aula: Usando Refs',
+            modulo: 'Módulo: Instância Vue'
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '###';
+            },
+            alterarModulo() {
+                this.modulo += '###';
+                // serve para consultar o valor, ou alguma atualizacao de dados
+                console.log(this.$ref.aulaRef.innerText);
+            }
+        }
+    });
+
+    // nao fica interessante essa mudanca, fica diferente da instancia vue
+    vm.$refs.aulaRef.innerText = 'Testando alteração';
+</script>

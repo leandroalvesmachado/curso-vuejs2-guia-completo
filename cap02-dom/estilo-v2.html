@@ -1,0 +1,58 @@
+<!-- Aula 35 - Estilo Dinamico e Classe CSS 02 -->
+<script src="https://unpkg.com/vue"></script>
+
+<style>
+    #app {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+    }
+
+    .c1 {
+        background-color: red;
+    }
+
+    .c-1 {
+        background-color: black;
+    }
+
+    .c2 {
+        background-color: green;
+    }
+
+    .c3 {
+        background-color: blue;
+    }
+</style>
+
+<div id="app">
+    <!-- para classes assim c-1, utilizar '' para nomes nao validos pelos css -->
+    <!-- <div class="demo" :class="{'c-1': aplicarC1}" @click="aplicarC1 = !aplicarC1"></div> -->
+
+    <!-- c1 recebe a cor aplicada a cada clique, nesse caso cores se alternando -->
+    <div class="demo" :class="{c1: aplicarC1, c2: !aplicarC1}" @click="aplicarC1 = !aplicarC1"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            aplicarC1: false
+        },
+        computed: {
+            estilo1() {
+                return {
+                    c1: this.aplicarC1,
+                    c2: !this.aplicarC1
+                }
+            }
+        }
+    });
+</script>

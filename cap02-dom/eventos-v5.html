@@ -1,0 +1,60 @@
+<!-- Aula 24 - Eventos de Teclado -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <!-- $event = palavra reservada para capturar evento do elemento -->
+    <button v-on:click="somar(5, $event)">Somar 1</button>
+    <p v-on:mousemove="atualizarXY">
+        Mouse: {{ x }} e {{ y }}
+        <!-- Serve para parar a propagacao do evento -->
+        <!-- stop = modificado de evento -->
+        <span v-on:mousemove.stop="">PARAR AQUI!!!!</span>
+        <!-- segunda forma, para a propagacao e altera o comportamento -->
+        <span v-on:mousemove.stop.prevent="">PARAR AQUI 2!!!!</span>
+    </p>
+    <!-- altera o comportamento padrao do elemento (prevent = prevenir) -->
+    <a v-on:click.prevent="" href="http://google.com">Google</a>
+    <!-- prevent com metodo -->
+    <a v-on:click="naoNavegar" href="http://google.com">Google</a>
+    <hr>
+    <input type="text" v-on:keyup="exibirAlerta">
+    <hr>
+    <!-- So chama o evento a partir da tecla enter -->
+    <input type="text" v-on:keyup.enter="exibirAlerta">
+    <hr>
+    <!-- So chama o evento a partir da tecla enter -->
+    <input type="text" v-on:keyup.enter.alt="exibirAlerta">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar(passo, event) {
+                console.log(passo, event);
+                this.contador += passo;
+            },
+            // Por padrao todo method recebe o evento
+            atualizarXY(event) {
+                console.log(event);
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            naoNavegar(event) {
+                event.preventDefault();
+            },
+            parar(event) {
+                event.stopPropagation();
+            },
+            exibirAlerta() {
+                alert('Estou te alertando.');
+            }
+        }
+    });
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox #02</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        div {
+            border: solid 5px dodgerblue;
+            font-size: 40px;
+        }
+
+        .big {
+            font-size: 1.5em;
+        }
+
+        .flex-container div {
+            /* coloca uma borda na div */
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            display: flex;
+            height: 300px;
+            width: 600px;
+        }
+
+        /* aplica no terceiro filho (terceiro item) dentro da div com a classe flex-container */
+        .flex-container div:nth-child(3) {
+            background-color: indianred;
+            /* ordena os elementos a partir do 0,1,2, etc... */
+            /* definiu o elemento com order 1, então ele vai pro fim, pois por padrão todos tem order 0 */
+            order: 1;
+            /* order: 0;
+            order: -1; */
+
+            /* aplica o alinhamento somente no elemento */
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <!-- flex-itens -->
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+</body>
+</html>

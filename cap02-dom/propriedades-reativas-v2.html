@@ -1,0 +1,45 @@
+<!-- Aula 29 - Propriedades Computadas -->
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!-- Nao pode ter um metodo com o mesmo nome de variavel -->
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="diminuir">Aumentar</button>
+    <p>Contador: {{ contador }}</p>
+    <p>Resultado: {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0
+            // resultado: ''
+        },
+        computed: {
+            // Chama como variavel
+            // nao pode ter o mesmo nome de variavel do data
+            // para acoes sincronas, ex: calculos
+            resultado() {
+                return this.contador >= 5 ?
+                    'Maior ou igual a 5' : 'Menor que 5';
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++;
+                // this.resultado = this.contador >= 5 ?
+                //     'Maior ou igual a 5' : 'Menor que 5'
+            },
+            diminuir() {
+                this.contador--;
+                // this.resultado = this.contador >= 5 ?
+                //     'Maior ou igual a 5' : 'Menor que 5'
+            }
+            // resultado() {
+            //     return this.contador >= 5 ?
+            //         'Maior ou igual a 5' : 'Menor que 5';
+            // }
+        }
+    });
+</script>

@@ -1,0 +1,29 @@
+<!-- Aula 73 - Como o VueJS Gerencia os Dados e Metodos -->
+<!-- Javascript usa demais o padrao observer, vue tb -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app1">
+    {{ titulo }}
+    <button @click="alterar">Alterar</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app1',
+        data: {
+            titulo: 'Teste 1'
+        },
+        methods: {
+            alterar() {
+                this.titulo += '###';
+            }
+        }
+    });
+
+    // Funciona em partes, o vue avisa que nao e uma propriedade reativa, pois
+    // esta fora da instancia Vue, se tentasse isso {{ novaInfo }}, nao funciona
+    // Fora do escopo do Vue, nao tem como ele observar
+    vm.novaInfo = 'Teste 2';
+    console.log(vm.novaInfo);
+</script>

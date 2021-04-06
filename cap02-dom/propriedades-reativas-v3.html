@@ -1,0 +1,49 @@
+<!-- Aula 30 - Monitorando as Mudancas (watch) -->
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <!-- Nao pode ter um metodo com o mesmo nome de variavel -->
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="diminuir">Aumentar</button>
+    <p>Contador: {{ contador }}</p>
+    <p>Resultado: {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+        computed: {
+            // Chama como variavel
+            // nao pode ter o mesmo nome de variavel do data (conflito)
+            // para acoes sincronas, ex: calculos
+            resultado() {
+                return this.contador >= 5 ?
+                    'Maior ou igual a 5' : 'Menor que 5';
+            }
+        },
+        watch: {
+            // deve ter o mesmo da variavel, para o monitoramento
+            // recebe dois parametros, valor novo e antigo
+            // para chamadas assincronas, ex: selectoption Estados e Cidades
+            contador(valorNovo, valorAntigo) {
+                console.log(valorNovo, valorAntigo);
+                // zerando contado apos 2 seg
+                setTimeout(() => {
+                    this.contador = 0;
+                }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++;
+            },
+            diminuir() {
+                this.contador--;
+            }
+        }
+    });
+</script>

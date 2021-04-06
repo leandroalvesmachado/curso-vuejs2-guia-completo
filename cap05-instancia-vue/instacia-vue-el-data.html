@@ -1,0 +1,26 @@
+<!-- Aula 75 - Uma Analise Mais Detalhada de $el e $data -->
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app1">
+    {{ titulo }}
+    <button @click="alterar">Alterar</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app1',
+        data: {
+            titulo: 'Teste 1'
+        },
+        methods: {
+            alterar() {
+                this.titulo += '###';
+            }
+        }
+    });
+
+    console.log(vm);
+    // cuidado ao alterar esses valores
+    // vm.$data.titulo == vm.titulo
+</script>

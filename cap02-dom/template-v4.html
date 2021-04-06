@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ titulo }}</p>
+    <p>{{ saudacao() }}</p>
+    <!-- Binding de Atributos -->
+    <!-- v-bind: = diretiva (propriedade personalizada ou existente do html) -->
+    <!-- <a :href="link" v-bind:personalizada="leandro" target="_blank">Google</a> -->
+    <!-- <a :href="link" target="_blank">Google</a> -->
+    <a v-bind:href="link" target="_blank">Google</a>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS 2!',
+            link: 'http://google.com.br'
+        },
+        methods: {
+            saudacao() {
+                console.log(this);
+                return this.titulo;
+            }
+        }
+    });
+</script>
